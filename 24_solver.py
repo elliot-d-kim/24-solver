@@ -3,13 +3,14 @@ def main():
 
     print("Let's solve 24! Enter the 4 given numbers one by one below.\n")
     for i in range(4):
-        given_nums.append(input("Enter number: "))
+        given_nums.append(int(input("Enter number: ")))
 
     print(given_nums)
 
-    nums = [2, 3, 4, 6]
+    nums = given_nums
     root = Node(nums)
     buildTree(root)
+    findSolutions(root)
     renderTree(root)
 
 class Node:
@@ -46,6 +47,30 @@ def renderTree(node):
     for child in node.children:
         renderTree(child)
     
+def findSolutions(root):
+    '''
+    cut all nodes that don't lead to 24
+    '''
+    if len(root.nums) == 2:
+        print("NODE.NUMS: " + str(root.nums))
+        idx = 0
+        while idx < len(root.children):     # foreach: indexing issues with remove()
+            child = root.children[idx]
+            print("child.nums: " + str(child.nums))
+            if child.nums != 24:
+                root.children.remove(child)
+            else:
+                idx += 1
+        return
+    idx = 0
+    while idx < len(root.children):         # foreach: indexing issues with remove()
+        child = root.children[idx]
+        findSolutions(child)
+        if child.children == []:
+            root.children.remove(child)
+        else:
+            idx += 1
+
 def applyOperations(nums):
     # goal: return all valid results from arithmetic operations in a dict
     # input: list of 2 nums
