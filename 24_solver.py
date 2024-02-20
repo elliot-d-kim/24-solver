@@ -7,30 +7,59 @@ def findOneSoln():
 
     print(given_nums)
 
-    
-def solnSearch(nums):
-    if len(nums) == 2:
-        for operation, result in applyOperations(nums):
-            if result == 24:
-                return str(num[0]) + " " + operation + " " + str(num[1])
+    print(solnSearch(sorted(nums)))
 
+class Node:
+    def __init__(self, nums):
+        self.children = []
+        self.nums = nums
+        self.operation = ""
+
+def buildTree(node):
+    if len(node.nums) == 2:
+        childNums = node.nums[0] + node.nums[1]
+        child = Node(childNums)
+        node.children.append(child)
+        return
+    for i in range(len(node.nums)-1):
+        for j in range(i+1, len(node.nums)):
+            num1, num2 = node.nums[i], node.nums[j]
+            combinedNum = num1 + num2
+            numsCopy = node.nums.copy()
+            numsCopy.pop(j) # removing i first messes up indexing for j
+            numsCopy.pop(i)
+            childNums = numsCopy + [combinedNum]
+            child = Node(childNums)
+            node.children.append(child)
+    for child in node.children:
+        buildTree(child)
+
+def renderTree(node):
+    print(node.nums)
+    if node.children == []:
+        return
+    for child in node.children:
+        renderTree(child)
+    
+            
 def applyOperations(nums):
+    # goal: return all valid results from arithmetic operations in a dict
+    # input: list of 2 nums
+    # output: {('+', 7), ('-', 1), ('x', 12)}
     nums = sorted(nums, reverse = True)
     results = {}
 
     results['+'] = sum(nums)
-    results['-'] = abs(nums[0] - nums[1])
+    results['-'] = nums[0] - nums[1]
     results['x'] = nums[0] * nums[1]
-    if nums[0] % nums[1] == 0:                  # if num is divisible
+    
+    # check first if num is divisible
+    if nums[0] % nums[1] == 0:
         results['/'] = nums[0] // nums[1]
     
     return results
 
-
-print(applyOperations([4, 8]))
-
-'''
-notes
-    * if not whole num, end
-
-'''
+nums = ["a", "b", "c", "d"]
+root = Node(nums)
+buildTree(root)
+renderTree(root)
