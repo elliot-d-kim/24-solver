@@ -34,24 +34,3 @@ notes
     * if not whole num, end
 
 '''
-
-'''
-
-def populateTree(nums):
-    # goal: create next layer until tree ends
-    # input: list of nums
-    # output: list of possible lists
-    nextLayer = []
-    for i in range(0, len(nums)-1):
-        num1 = num[i]
-        num2 = num[i+1]
-        for operation, result in applyOperations(num1, num2):
-
-
-def applyOperations():
-    # goal: return all valid results from arithmetic operations in a list
-    # input: [3,4]
-    # output: [('+', 7), ('-', 1), ('x', 12)]
-    pass
-
-'''
