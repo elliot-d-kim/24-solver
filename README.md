@@ -10,7 +10,7 @@ Given 4 numbers, get 24 using only basic arithmetic! (or in this case, an algori
 - [The Naive Approach](#the-naive-approach)
 - [The Algorithm: Grouping and Decision Trees](#the-algorithm-grouping-and-decision-trees)
 - [Implementation](#implementation)
-- [Future considerations](#future-considerations)
+- [Future Considerations](#future-considerations)
 
 ## Introduction
 
@@ -88,7 +88,7 @@ Other implementation details:
 * Sorting operands in descending order prior to applying arithmetic to prevent subtracting or dividing a smaller number by a larger number (but avoid dividing by 0)
 * Removing any instances of non-integer quotients from solution space to prevent int-float bugs (which I later learned actually means this current implementation misses some edge cases)
 
-## Future considerations
+## Future Considerations
 
 * Better visual representation of the solution tree
 * Easier access to solver
