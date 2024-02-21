@@ -55,20 +55,31 @@ The construction of any possible expression given _n_ numbers can be thought of 
     * Which operation are you using to combine them?
 * Repeat until you have a final expression (hopefully 24).
 
-> #### Example: Understanding the Decision Space
->
-> Ignoring for now the sub-decision of which operation to use, here is an example given `[a, b, c]` (just 3 numbers for simplicity):
-> * Combine a and b: `[ab, c]`
->    * Combine ab and c: `[abc]` (Outcome 1)
-> * Combine a and c: `[ac, b]`
->    * Combine ac and b: `[acb]` (Outcome 2)
-> * Combine b and c: `[bc, a]`
->    * Combine bc and a: `[bca]` (Outcome 3)
->
-> Notice when 3 values are available (`[a, b, c]`), there are 3 choices of combinations: this is 3 choose 2, if you are familiar with combinatorics. After 2 of the 3 values are combined (e.g., combining `a` and `b`), there are 2 values available (`[ab, c]`). When 2 values are available, there is only 1 (i.e., 2 choose 2) way to combine them (`[abc]`). As we can see, there are 3 * 1 = 3 possible outcomes
->
-> When there are 4 values available to start, as is the case in classic 24, there are 4 choose 2 (i.e., 6) possible combinations. 6 choices that will leave you with 3 available values, which (as we saw previously) each have their own 3 choices, which each have 1 choice, means that there are 6 * 3 * 1 = 18 possible ways to combine the values. With the 4 arithmetic operations, there are 18 * 4 = **72 possible outcomes**. 
->
+<blockquote>
+    <h4>Example: Understanding the Decision Space</h4>
+    <p>Ignoring for now the sub-decision of which operation to use, here is an example given <code>[a, b, c]</code> (just 3 numbers for simplicity):</p>
+    <ul>
+        <li>Combine a and b: <code>[ab, c]</code>
+            <ul>
+                <li>Combine ab and c: <code>[abc]</code> (Outcome 1)</li>
+            </ul>
+        </li>
+        <li>Combine a and c: <code>[ac, b]</code>
+            <ul>
+                <li>Combine ac and b: <code>[acb]</code> (Outcome 2)</li>
+            </ul>
+        </li>
+        <li>Combine b and c: <code>[bc, a]</code>
+            <ul>
+                <li>Combine bc and a: <code>[bca]</code> (Outcome 3)</li>
+            </ul>
+        </li>
+    </ul>
+    <p>Notice when 3 values are available (<code>[a, b, c]</code>), there are 3 choices of combinations: this is 3 choose 2, if you are familiar with combinatorics. After 2 of the 3 values are combined (e.g., combining <code>a</code> and <code>b</code>), there are 2 values available (<code>[ab, c]</code>). When 2 values are available, there is only 1 (i.e., 2 choose 2) way to combine them (<code>[abc]</code>). As we can see, there are 3 * 1 = 3 possible outcomes</p>
+    <p>When there are 4 values available to start, as is the case in classic 24, there are 4 choose 2 (i.e., 6) possible combinations. 6 choices that will leave you with 3 available values, which (as we saw previously) each have their own 3 choices, which each have 1 choice, means that there are 6 * 3 * 1 = 18 possible ways to combine the values. With the 4 arithmetic operations, there are 18 * 4 = <strong>72 possible outcomes</strong>.</p>
+</blockquote>
+
+
 
 To solve 24, the outcomes as well as the construction of their expressions are necessary to evaluate whether each expression is equal to 24 and, if it is, reproduce the expression as a solution. A tree is an appropriate data structure here: not only can it hold the 72 possible outcomes at its leaves but also it retains all paths to the outcomes in its branches.
 
