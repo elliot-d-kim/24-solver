@@ -55,7 +55,7 @@ The construction of any possible expression given _n_ numbers can be thought of 
     * Which operation are you using to combine them?
 * Repeat until you have a final expression (hopefully 24).
 
-<blockquote>
+<blockquote style="color: #e6edf3;">
     <h4>Example: Understanding the Decision Space</h4>
     <p>Ignoring for now the sub-decision of which operation to use, here is an example given <code>[a, b, c]</code> (just 3 numbers for simplicity):</p>
     <ul>
