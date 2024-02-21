@@ -15,7 +15,7 @@ class Node:
     def __init__(self, nums):
         self.children = []      # nodes made directly via combinations using self.nums
         self.nums = nums        # the nums available for combination
-        self.sources = []       # the numbers combined in parent to create this node
+        self.operands = []      # the numbers combined in parent to create this node
         self.operation = ""     # operation used to combine
 
 def buildTree(node):
@@ -27,7 +27,7 @@ def buildTree(node):
     if len(node.nums) == 2:
         for operation, result in applyOperations(node.nums).items():
             child = Node([result])
-            child.sources = sorted(node.nums, reverse = True)
+            child.operands = sorted(node.nums, reverse = True)
             child.operation = operation
             node.children.append(child)
         return
@@ -44,7 +44,7 @@ def buildTree(node):
 
                 # create child node based on combining num1 and num2 with operation
                 child = Node(numsCopy + [result])
-                child.sources = sorted([num1, num2], reverse = True)
+                child.operands = sorted([num1, num2], reverse = True)
                 child.operation = operation
                 node.children.append(child)
 
@@ -84,22 +84,22 @@ def renderTree(node):
     prepend = "---" * (4 - len(node.nums))
     appendEqn = ""
     if len(node.nums) < 4:
-        appendEqn = ", " + strFormatEqn(node.sources, node.operation)
+        appendEqn = ", " + strFormatEqn(node.operands, node.operation)
     print(prepend + str(node.nums) + appendEqn)
     if node.children == []:
         return
     for child in node.children:
         renderTree(child)
 
-def strFormatEqn(sources, operation):
+def strFormatEqn(operands, operation):
     '''
-    goal: format sources and operation as "(a + b)"
-    input: sources = (a, b); operation = "+"
+    goal: format operands and operation as "(a + b)"
+    input: operands = (a, b); operation = "+"
     output: return "(a + b)"
     '''
-    if sources == []:
+    if operands == []:
         return ""
-    return "(" + str(sources[0]) + " " + operation + " " + str(sources[1]) + ")"
+    return "(" + str(operands[0]) + " " + operation + " " + str(operands[1]) + ")"
 
 def applyOperations(nums):
     '''
