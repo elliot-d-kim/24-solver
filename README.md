@@ -4,7 +4,7 @@ Given 4 numbers, get 24 using only basic arithmetic! (or in this case, an algori
 
 **Keywords: Recursion, Decision Trees, Algorithm design**
 
-## Table of Contents
+### Table of Contents
 - [Introduction](#introduction)
 - [Rules of 24](#rules-of-24)
 - [The Naive Approach](#the-naive-approach)
@@ -12,17 +12,17 @@ Given 4 numbers, get 24 using only basic arithmetic! (or in this case, an algori
 - [Implementation](#implementation)
 - [Future Considerations](#future-considerations)
 
-## Introduction
+### Introduction
 
 Where I work as a part-time coding instructor, there is a daily "24" to solve. It's a fun brain teaser, but I wanted to take it a step further and write an algorithm that would find solutions in a robust manner. Coming up with a theoretical algorithm reminded me of my Algorithms course in college and long evenings with friends sketching flow networks and DAGs on whiteboards -- though this algorithm may not be as complex in concept, implementing it proved to have its own fun challenges.
 
-## Rules of 24
+### Rules of 24
 
 * Given: 4 natural numbers (integers > 0)
 * Each number must be used _exactly_ once
 * Use only arithmetic operations: +, -, ×, ÷
 
-## The Naive Approach
+### The Naive Approach
 
 It may seem straightforward enough to do something like this: 
 
@@ -46,7 +46,7 @@ Given the numbers `[2, 3, 4, 6]`, arrange all possible orderings of the numbers 
 
 The issue here is that some solutions are only possible with grouping. For example, `[1, 3, 4, 8]` can only be solved via grouping: (8 - 4) * (3 - 1) = 24 (credit to [BGR360](https://github.com/BGR360) for this example).
 
-## The Algorithm: Grouping and Decision Trees
+### The Algorithm: Grouping and Decision Trees
 
 My grouping approach is, at least in concept, a robust and relatively simple way to find all possible solutions.
 
@@ -55,7 +55,7 @@ The construction of any possible expression given _n_ numbers can be thought of 
     * Which operation are you using to combine them?
 * Repeat until you have a final expression (hopefully 24).
 
-> ### Example: Understanding the Decision Space
+> #### Example: Understanding the Decision Space
 >
 > Ignoring for now the sub-decision of which operation to use, here is an example given `[a, b, c]` (just 3 numbers for simplicity):
 > * Combine a and b: `[ab, c]`
@@ -74,7 +74,7 @@ To solve 24, the outcomes as well as the construction of their expressions are n
 
 Finally, while in many cases there will be some equivalent expressions and repeated outcomes, this is a robust approach that will discover all possible solutions.
 
-## Implementation
+### Implementation
 
 As I assessed various implementation approaches, I found that these were key considerations:
 * Separating (a) building the solution space and (b) searching it
@@ -88,7 +88,7 @@ Other implementation details:
 * Sorting operands in descending order prior to applying arithmetic to prevent subtracting or dividing a smaller number by a larger number (but avoid dividing by 0)
 * Removing any instances of non-integer quotients from solution space to prevent int-float bugs (which I later learned actually means this current implementation misses some edge cases)
 
-## Future Considerations
+### Future Considerations
 
 * Better visual representation of the solution tree
 * Easier access to solver
